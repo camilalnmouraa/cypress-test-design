@@ -54,16 +54,71 @@ Execute `npm test` (ou `npm t` para abreviar) para executar todos os testes no m
 
 ### Modo interativo
 
-Execute `npm run cy:open` para abrir o **Cypress App** para executar testes no modo interativo usando uma viewport de desktop.
+Execute `npx cypress open` para abrir o **Cypress App** para executar testes no modo interativo usando uma viewport de desktop.
 
 > Após rodar os testes, o resultado esperado deve ser semelhante a este:
 
 
 ```sh
 
+  Running:  login.cy.js                                                                     (1 of 2)
 
+
+  Teste de Login
+    1) Deve fazer login com credenciais válidas
+    √ Deve exibir erro ao inserir um CPF inválido (8849ms)
+    2) Deve exibir erro ao inserir uma senha inválida com CPF válido
+
+
+  1 passing (37s)
+  2 failing
+
+  1) Teste de Login
+       Deve fazer login com credenciais válidas:
+     AssertionError: Timed out retrying after 4000ms: Expected to find element: `#current-password`, but never found it.
+      at Helpers.escrever (webpack://cypress-test-design/./cypress/helpers/Helpers.js:7:7)
+      at Context.eval (webpack://cypress-test-design/./cypress/support/commands.js:12:10)
+
+  2) Teste de Login
+       Deve exibir erro ao inserir uma senha inválida com CPF válido:
+     AssertionError: Timed out retrying after 4000ms: Expected to find element: `#current-password`, but never found it.
+      at Helpers.escrever (webpack://cypress-test-design/./cypress/helpers/Helpers.js:7:7)
+      at Context.eval (webpack://cypress-test-design/./cypress/e2e/login.cy.js:25:12)
+
+  Teste de Navegação
+    1) Deve navegar para a página de Finanças
+    2) Deve navegar para a página de Serviços
+    3) Deve clicar em Consultar meu Score Serasa
+
+
+  0 passing (26s)
+  3 failing
+
+  1) Teste de Navegação
+       Deve navegar para a página de Finanças:
+     AssertionError: Timed out retrying after 4000ms: Expected to find element: `a[href="/area-cliente/saude-financeira"]`, but never found it.
+      at Helpers.clicar (webpack://cypress-test-design/./cypress/helpers/Helpers.js:3:7)
+      at Context.eval (webpack://cypress-test-design/./cypress/e2e/navegacao.cy.js:11:12)
+
+  2) Teste de Navegação
+       Deve navegar para a página de Serviços:
+     AssertionError: Timed out retrying after 4000ms: Expected to find element: `a[href="/area-cliente/solucoes"]`, but never found it.
+      at Helpers.clicar (webpack://cypress-test-design/./cypress/helpers/Helpers.js:3:7)
+      at Context.eval (webpack://cypress-test-design/./cypress/e2e/navegacao.cy.js:17:12)
+
+  3) Teste de Navegação
+       Deve clicar em Consultar meu Score Serasa:
+     AssertionError: Timed out retrying after 4000ms: Expected to find element: `a[href="/area-cliente/solucoes"]`, but never found it.
+      at Helpers.clicar (webpack://cypress-test-design/./cypress/helpers/Helpers.js:3:7)
+      at Context.eval (webpack://cypress-test-design/./cypress/e2e/navegacao.cy.js:23:12)
 
 ```
+
+> Durante o desenvolvimento dos testes automatizados, foi identificado que o site utiliza uma solução de segurança chamada DataDome. Esse serviço tem como objetivo proteger a aplicação contra acessos não autorizados, incluindo automações como as realizadas por ferramentas de teste, como o Cypress.
+
+O DataDome funciona detectando e bloqueando padrões de comportamento que não se assemelham aos de um usuário humano, como a execução de scripts automatizados. No caso deste desafio técnico, isso impede que os testes sejam executados completamente, causando os erros apresentados no resultado esperado acima.
+
+Embora soluções alternativas possam ser implementadas (como configurar um ambiente de homologação sem o DataDome), tal mudança requer acesso administrativo à aplicação.
 
 ___
 
