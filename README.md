@@ -115,9 +115,7 @@ Execute `npx cypress open` para abrir o **Cypress App** para executar testes no 
 ```
 
 > Durante o desenvolvimento dos testes automatizados, foi identificado que o site utiliza uma solução de segurança chamada DataDome. Esse serviço tem como objetivo proteger a aplicação contra acessos não autorizados, incluindo automações como as realizadas por ferramentas de teste, como o Cypress.
-
 O DataDome funciona detectando e bloqueando padrões de comportamento que não se assemelham aos de um usuário humano, como a execução de scripts automatizados. No caso deste desafio técnico, isso impede que os testes sejam executados completamente, causando os erros apresentados no resultado esperado acima.
-
 Embora soluções alternativas possam ser implementadas (como configurar um ambiente de homologação sem o DataDome), tal mudança requer acesso administrativo à aplicação.
 
 ___
